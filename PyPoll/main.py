@@ -40,16 +40,23 @@ with open(csvpath, newline = '') as csvfile:
     print("****************************")
     print(f"Here's the spread:")
     for k in range(0,len(candidates)):
-        print(f"{candidates[k]} received {round((votes[k]/rowcount)*100, 2)}% of the votes ({votes[k]})")
+        print(f"{candidates[k]} received {round((votes[k]/rowcount)*100, 2)}% of the votes (n = {votes[k]})")
     print("****************************")
     print(f"The winner of this election for an ambiguous office is...")
-    print("** drum roll **")
+    print("** DRUM ROLLLLL **")
     print(f"{winner}!!!!!")
 
-    # Now we have the PLEASURE of writing our results to a file.
-    # out_csvpath = os.path.join('election_results.txt')
-    # with open(out_csvpath, 'w', newline='') as txtfile:
-    #     txtwriter=txt.writer(txtfile, delimiter = ',')
-    #     txtwriter.writerow("Summary of the Profits and Losses")
-
-
+    # Gotta keep a record of these results to make them legit!
+    out_txtpath = os.path.join('election_results.txt')
+    with open(out_txtpath, 'w') as text_file:
+        text_file.write("The Election Results are in!\r")
+        text_file.write("****************************\r")
+        text_file.write(f"There were {rowcount} engaged citizens this election!\r")
+        text_file.write("****************************\r")
+        text_file.write(f"Here's the spread:\r")
+        for k in range(0,len(candidates)):
+            text_file.write(f"{candidates[k]} received {round((votes[k]/rowcount)*100, 2)}% of the votes (n = {votes[k]})\r")
+        text_file.write("****************************\r")
+        text_file.write(f"The winner of this election for an ambiguous office is...\r")
+        text_file.write("** DRUM ROLLLLL **\r")
+        text_file.write(f"{winner}!!!!!")
