@@ -55,4 +55,15 @@ with open(csvpath, newline = '') as csvfile:
     print(f"Month of greatest prosperity: {csvbudget[highest][0]} (${profit})")
     print(f"Month of epic sadness: {csvbudget[lowest][0]} (${loss})")
 
+    # Now we have the PLEASURE of writing our results to a file.
+    out_csvpath = os.path.join('ProfitLoss_Summary.txt')
+    with open(out_csvpath, 'w', newline='') as txtfile:
+        txtwriter=txt.writer(txtfile, delimiter = ',')
+        txtwriter.writerow("Summary of the Profits and Losses")
+        txtwriter.writerowprint(f"Total months: {rowcount}")
+        txtwriter.writerowprint(f"Total: ${total}")
+        txtwriter.writerowprint(f"Average change: ${round(PLavg,2)}")
+        txtwriter.writerowprint(f"Month of greatest prosperity: {csvbudget[highest][0]} (${profit})")
+        txtwriter.writerowprint(f"Month of epic sadness: {csvbudget[lowest][0]} (${loss})")
+
 
