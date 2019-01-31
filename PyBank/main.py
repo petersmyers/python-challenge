@@ -23,17 +23,20 @@ with open(csvpath, newline = '') as csvfile:
     rowcount = sum(1 for row in csvbudget)
     
     # Set total to zero so we have a baseline for accounting.
-    total = 0
-    for row in csvbudget:
-        total += int(row[1])
+    total = sum((int(row[1])) for row in csvbudget)
     
     # Get the average change of P/L
     # Also going to look for the gretest loss and profit months
+    # Let's set some baseline variables for our for-loop
     PLavg = 0
     loss = (int(csvbudget[1][1]) - int(csvbudget[0][1]))
     profit = (int(csvbudget[1][1]) - int(csvbudget[0][1]))
     lowest = 0
     highest = 0
+
+    # For-loop: GO!
+    # Starting at 1 because we need to be able to subtract the row above.
+    # Could also have started at 0 and then not included last row. Either or. 
     for i in range(1,len(csvbudget)):
         PnL = (int(csvbudget[i][1]) - int(csvbudget[i-1][1]))
         PLavg += PnL
